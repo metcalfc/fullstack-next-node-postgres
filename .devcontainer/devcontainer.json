@@ -1,0 +1,44 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/docker-in-docker
+{
+	"name": "Docker in Docker",
+
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"version": "20.10",
+			"enableNonRootDocker": "true",
+			"moby": "false"
+		}
+	},
+
+	// Make the front and back ends available to the user on localhost
+	"forwardPorts": [3000, 4000],
+	
+	"portsAttributes": {
+		"3000": {
+			"label": "Frontend",
+			"onAutoForward": "openPreview"
+		},
+		"4000": {
+			"label": "Backend",
+			"onAutoForward": "ignore"
+		},
+		"5432": {
+			"label": "Database",
+			"onAutoForward": "ignore"
+		}
+	},
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azuretools.vscode-docker",
+				"dbaeumer.vscode-eslint",
+				"redhat.vscode-yaml"
+			]
+		}
+	}
+
+}
